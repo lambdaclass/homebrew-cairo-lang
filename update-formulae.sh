@@ -14,10 +14,10 @@ for release in $(seq 0 $(($(echo $RELEASES | jq length) - 1))); do
 	rm cairo-${VERSION#v}.tar.gz
 
 	FORMULA_FILE="cairo-lang@$VERSION.rb"
-	cat >"test/$FORMULA_FILE" <<EOL
+	cat >"Formula/$FORMULA_FILE" <<EOL
 class CairoLang@$VERSION < Formula
   desc "Cairo Language $VERSION"
-  version "$VERSION"
+  version "${VERSION#v}"
   depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"

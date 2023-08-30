@@ -1,6 +1,6 @@
 class CairoLang@v2.0.0 < Formula
   desc "Cairo Language v2.0.0"
-  version "v2.0.0"
+  version "2.0.0"
   depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"
