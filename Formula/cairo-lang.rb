@@ -9,11 +9,14 @@ class CairoLang < Formula
   license "Apache-2.0"
 
   def install
-    if File.file?("/opt/homebrew/bin/rustc") || File.file?("/Users/$USER/.cargo/bin/rustc")
+    if !(File.file?("/opt/homebrew/bin/rustc") || File.file?("/Users/$USER/.cargo/bin/rustc"))
       raise("Rust compiler not installed, please install it first!")
     end
 
-    print("Detected Rust installation \n")
+    if (File.file?("$HOME/.cargo/bin/rustup"))
+      print("Rust compiler found but rustup, installing...")
+      system("rustup-init -qy")
+    end
 
     current_user = ENV["USER"]
     ENV.prepend_path "PATH", "/Users/#{current_user}/.cargo/bin/"
@@ -33,6 +36,6 @@ class CairoLang < Formula
   end
 
   test do
-    system "#{bin}/cairo-run", "-V"
+    system("cairo-run", "-V")
   end
 end
