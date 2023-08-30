@@ -9,17 +9,17 @@ class CairoLang < Formula
   license "Apache-2.0"
 
   def install
-    if !(File.file?("/opt/homebrew/bin/rustc") || File.file?("/Users/$USER/.cargo/bin/rustc"))
+    if !(File.file?("/opt/homebrew/bin/rustc") || File.file?("/Users/#{current_user}/.cargo/bin/rustc"))
       raise("Rust compiler not installed, please install it first!")
-    end
-
-    if !(File.file?("$HOME/.cargo/bin/rustup"))
-      puts "Rust compiler found but rustup, installing..."
-      system("rustup-init -qy")
     end
 
     current_user = ENV["USER"]
     ENV.prepend_path "PATH", "/Users/#{current_user}/.cargo/bin/"
+
+    if !(File.file?("/Users/#{current_user}/.cargo/bin/rustup"))
+      puts "Rust compiler found but rustup, installing..."
+      system("rustup-init -qy")
+    end
 
     system("rustup override set stable")
     system("cargo build --all --release --manifest-path ./Cargo.toml")
