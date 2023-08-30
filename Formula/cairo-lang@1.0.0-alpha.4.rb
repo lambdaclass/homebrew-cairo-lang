@@ -1,28 +1,11 @@
-#!/usr/bin/env bash
-
-# Get the releases using GitHub API
-RELEASES=$(curl -s "https://api.github.com/repos/starkware-libs/cairo/releases")
-
-for release in $(seq 0 $(($(echo $RELEASES | jq length) - 1))); do
-	VERSION=$(echo $RELEASES | jq .[$release].tag_name | sed 's/"//g')
-	DOWNLOAD_URL="https://github.com/starkware-libs/cairo/archive/refs/tags/$VERSION.tar.gz"
-
-	curl -sLOJ $DOWNLOAD_URL
-
-	SHA256_HASH=$(sha256sum "cairo-${VERSION#v}.tar.gz" | awk '{print $1}')
-
-	rm cairo-${VERSION#v}.tar.gz
-
-	FORMULA_FILE="cairo-lang@${VERSION#v}.rb"
-	cat >"Formula/$FORMULA_FILE" <<EOL
-class CairoLangAT$(echo $VERSION | tr -d 'v.-' | tr "r" "R") < Formula
-  desc "Cairo Language $VERSION"
-  version "${VERSION#v}"
+class CairoLangAT100alpha4 < Formula
+  desc "Cairo Language v1.0.0-alpha.4"
+  version "1.0.0-alpha.4"
   depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"
-  url "$DOWNLOAD_URL"
-  sha256 "$SHA256_HASH"
+  url "https://github.com/starkware-libs/cairo/archive/refs/tags/v1.0.0-alpha.4.tar.gz"
+  sha256 "3fb7e86e2fc88ef57e7bf9178d5e8c9272f558c8c9fb5d2ebea18b327b661e4b"
   license "Apache-2.0"
 
   def install
@@ -52,9 +35,3 @@ class CairoLangAT$(echo $VERSION | tr -d 'v.-' | tr "r" "R") < Formula
     bin.install "./target/release/starknet-sierra-compile"
   end
 end
-EOL
-
-	echo "Created $FORMULA_FILE"
-done
-
-echo "All formula files created."
