@@ -13,16 +13,16 @@ class CairoLang < Formula
       raise("Rust compiler not installed, please install it first!")
     end
 
-    if (File.file?("$HOME/.cargo/bin/rustup"))
-      print("Rust compiler found but rustup, installing...")
+    if !(File.file?("$HOME/.cargo/bin/rustup"))
+      puts "Rust compiler found but rustup, installing...")
       system("rustup-init -qy")
     end
 
     current_user = ENV["USER"]
     ENV.prepend_path "PATH", "/Users/#{current_user}/.cargo/bin/"
 
-    print(`rustup override set stable`)
-    print(`cargo build --all --release --manifest-path ./Cargo.toml`)
+    system(`rustup override set stable`)
+    system(`cargo build --all --release --manifest-path ./Cargo.toml`)
 
     prefix.install Dir["./corelib/"]
     bin.install "./target/release/cairo-compile"
@@ -36,6 +36,6 @@ class CairoLang < Formula
   end
 
   test do
-    system("cairo-run", "-V")
+    system("cairo-run -V")
   end
 end
