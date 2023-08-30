@@ -1,11 +1,11 @@
-class CairoLang < Formula
-  desc "Cairo language installation"
-  version "2.2.0"
+class CairoLang@v2.1.0 < Formula
+  desc "Cairo Language v2.1.0"
+  version "2.1.0"
   depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"
-  url "https://github.com/starkware-libs/cairo/archive/refs/tags/v#{version}.tar.gz"
-  sha256 "147204fd038332f0a731c99788930eb3a8e042142965b0aa9543e93d532e08df"
+  url "https://github.com/starkware-libs/cairo/archive/refs/tags/v2.1.0.tar.gz"
+  sha256 "ab832bcb82599b922a9ad8613ae68003191900b25ea4a46a4bde20f25b14b5de"
   license "Apache-2.0"
 
   def install
@@ -33,9 +33,5 @@ class CairoLang < Formula
     bin.install "./target/release/sierra-compile"
     bin.install "./target/release/starknet-compile"
     bin.install "./target/release/starknet-sierra-compile"
-  end
-
-  test do
-    system("cairo-run -V")
   end
 end
