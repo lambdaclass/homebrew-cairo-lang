@@ -15,7 +15,7 @@ for release in $(seq 0 $(($(echo $RELEASES | jq length) - 1))); do
 
 	FORMULA_FILE="cairo-lang@${VERSION#v}.rb"
 	cat >"Formula/$FORMULA_FILE" <<EOL
-class CairoLangAT$(echo $VERSION | tr -d 'v.-') < Formula
+class CairoLangAT$(echo $VERSION | tr -d 'v.-' | tr "r" "R") < Formula
   desc "Cairo Language $VERSION"
   version "${VERSION#v}"
   depends_on "rust"

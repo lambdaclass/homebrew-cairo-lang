@@ -1,4 +1,4 @@
-class CairoLangAT200rc3 < Formula
+class CairoLangAT200Rc3 < Formula
   desc "Cairo Language v2.0.0-rc3"
   version "2.0.0-rc3"
   depends_on "rust"
