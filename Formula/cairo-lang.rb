@@ -14,7 +14,7 @@ class CairoLang < Formula
     end
 
     if !(File.file?("$HOME/.cargo/bin/rustup"))
-      puts "Rust compiler found but rustup, installing...")
+      puts "Rust compiler found but rustup, installing..."
       system("rustup-init -qy")
     end
 
