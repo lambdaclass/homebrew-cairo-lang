@@ -1,11 +1,11 @@
-class CairoLang@v2.0.0-rc3 < Formula
-  desc "Cairo Language v2.0.0-rc3"
-  version "2.0.0-rc3"
+class CairoLangAT210rc2 < Formula
+  desc "Cairo Language v2.1.0-rc2"
+  version "2.1.0-rc2"
   depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"
-  url "https://github.com/starkware-libs/cairo/archive/refs/tags/v2.0.0-rc3.tar.gz"
-  sha256 "f08bb1bc59f06c8153c992b939071a0032cda72c99925fa9a1009b51ac57455d"
+  url "https://github.com/starkware-libs/cairo/archive/refs/tags/v2.1.0-rc2.tar.gz"
+  sha256 "c8a0b013cfd51645ee23452f21d57636edb424eba9794a089b7a74cfd7f797ee"
   license "Apache-2.0"
 
   def install

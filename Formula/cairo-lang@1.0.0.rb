@@ -1,4 +1,4 @@
-class CairoLang@v1.0.0 < Formula
+class CairoLangAT100 < Formula
   desc "Cairo Language v1.0.0"
   version "1.0.0"
   depends_on "rust"
