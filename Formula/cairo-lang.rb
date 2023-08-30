@@ -21,8 +21,8 @@ class CairoLang < Formula
     current_user = ENV["USER"]
     ENV.prepend_path "PATH", "/Users/#{current_user}/.cargo/bin/"
 
-    system(`rustup override set stable`)
-    system(`cargo build --all --release --manifest-path ./Cargo.toml`)
+    system("rustup override set stable")
+    system("cargo build --all --release --manifest-path ./Cargo.toml")
 
     prefix.install Dir["./corelib/"]
     bin.install "./target/release/cairo-compile"
