@@ -1,7 +1,6 @@
 class CairoLangAT220 < Formula
   desc "Cairo Language v2.2.0"
   version "2.2.0"
-  depends_on "rust"
   depends_on "rustup"
   homepage "https://cairo-by-example.com/"
   url "https://github.com/starkware-libs/cairo/archive/refs/tags/v2.2.0.tar.gz"
@@ -9,16 +8,11 @@ class CairoLangAT220 < Formula
   license "Apache-2.0"
 
   def install
-    if !(File.file?("/opt/homebrew/bin/rustc") || File.file?("/Users/#{current_user}/.cargo/bin/rustc"))
-      raise("Rust compiler not installed, please install it first!")
-    end
-
     current_user = ENV["USER"]
     ENV.prepend_path "PATH", "/Users/#{current_user}/.cargo/bin/"
 
     if !(File.file?("/Users/#{current_user}/.cargo/bin/rustup"))
-      puts "Rust compiler found but rustup, installing..."
-      system("rustup-init -qy")
+      raise("rustup command not found, please run rustup-init to proceed...")
     end
 
     system("rustup override set stable")
