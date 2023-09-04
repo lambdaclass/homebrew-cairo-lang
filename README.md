@@ -17,4 +17,4 @@ brew install lambdaclass/homebrew-cairo-lang/cairo-lang@2.2.0
 
 
 #### NOTE:
-If you encounter with an error that says `"rustup command not found, please run rustup-init to proceed..."`, this means that the `rustup` command was not found, meaning that you need to run `rustup-init` to install it. You can then proceed with the installation normally.
+If you encounter with an error that says `"rustup command not found, please run rustup-init to proceed..."`, this means that the `rustup` command was not found, meaning that you need to run `rustup-init` to install it, this cannot be done automatically since `homebrew` runs in a sandbox and thus prohibiting writing outside of it. Once done, you can then proceed with the installation normally.
